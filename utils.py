@@ -81,7 +81,10 @@ def parse_dice(text: str) -> dict:
         if 'd' in modifiers:
             modifier_roll = handle_modifiers(modifiers, dice_roll)
         else:
-            modifier_roll = int(modifiers)
+            modifier_roll = {
+              'modifier_roll': int(modifiers),
+              'modifier_total': int(modifiers)
+            }
 
         result = {
             **dice_roll,
