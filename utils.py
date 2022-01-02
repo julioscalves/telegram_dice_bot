@@ -83,15 +83,15 @@ def parse_dice(text: str) -> dict:
             modifier_roll = int(modifiers)
 
         result = {
-            *dice_roll,
-            *modifier_roll
+            **dice_roll,
+            **modifier_roll
         }
 
         result['total_with_modifiers'] = result['total'] + modifier_roll['total']
 
     else:
         result = {
-            *dice_roll
+            **dice_roll
         }
 
     return result
