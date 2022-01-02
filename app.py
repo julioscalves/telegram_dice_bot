@@ -2,7 +2,7 @@ import os
 import random
 import requests
 
-from . import utils
+import utils
 
 from flask import Flask
 from flask.globals import request
