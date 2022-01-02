@@ -22,6 +22,7 @@ def updates() -> dict:
 
         text = request_object['message']['text']
         chat_id = request_object['message']['from']['id']
+        message_id = request_object['message']['message_id']
         result = {}
 
         message = ''
@@ -49,6 +50,7 @@ def updates() -> dict:
 
         if len(message) > 0:
             payload = {
+                'reply_to_message_id': message_id,
                 'chat_id': chat_id,
                 'text': message,
                 'parse_mode': 'HTML'
