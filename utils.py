@@ -36,11 +36,11 @@ def wod(dice_number: int, difficulty: int) -> dict:
     result = {}
 
     roll = [random.randint(1, 10) for _ in range(dice_number)]
-    successes = filter(lambda x: x >= difficulty, roll)
+    successes = list(filter(lambda x: x >= difficulty, roll))
 
     result['status'] = 'success'
     result['roll'] = roll
-    result['success'] = len(successes)
+    result['success'] = len(successes) - roll.count(1)
 
     return result
 
