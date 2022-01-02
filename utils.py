@@ -4,15 +4,15 @@ import re
 
 def assemble_message(result: dict):
     if 'total_with_modifiers' in result.keys():
-        mod_sign = '-' if result['modifier_roll'] < 0 else '+'
+        mod_sign = '-' if sum(result['modifier_roll']) < 0 else '+'
         
         message = (
-            f'([{result["roll"]}]) {mod_sign} ([{result["modifier_roll"]}]): [{result["total"]+result["modifier_total"]}]'
+            f'({result["roll"]}) {mod_sign} ({result["modifier_roll"]}): [{result["total"]+result["modifier_total"]}]'
         )
 
     else:
         message = (
-            f'[{result["roll"]}]: [{result["total"]}]'
+            f'{result["roll"]}: [{result["total"]}]'
         )
 
     return message
@@ -40,17 +40,18 @@ def wod(dice_number: int, difficulty: int) -> dict:
 
     result['status'] = 'success'
     result['roll'] = roll
-    result['success'] = len(successes) - roll.count(1)
+    result['total'] = len(successes) - roll.count(1)
 
     return result
 
 
 def handle_modifiers(modifier: int, main_roll: int) -> dict:
     result = roll_dice(modifier[1:])
+    print(result)
 
     return {
-        'modifier_roll': result,
-        'modifier_total': sum(modifier)
+        'modifier_roll': result['roll'],
+        'modifier_total': result['total']
     }
 
 
@@ -78,7 +79,7 @@ def parse_dice(text: str) -> dict:
 
     if len(modifiers) > 0:
         if 'd' in modifiers:
-            modifier_roll = handle_modifiers()
+            modifier_roll = handle_modifiers(modifiers, dice_roll)
         else:
             modifier_roll = int(modifiers)
 
@@ -87,7 +88,7 @@ def parse_dice(text: str) -> dict:
             **modifier_roll
         }
 
-        result['total_with_modifiers'] = result['total'] + modifier_roll['total']
+        result['total_with_modifiers'] = result['total'] + modifier_roll['modifier_total']
 
     else:
         result = {
