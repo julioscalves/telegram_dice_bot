@@ -4,8 +4,13 @@ import re
 
 def assemble_message(result: dict):
     if 'total_with_modifiers' in result.keys():
-        mod_sign = '-' if sum(result['modifier_roll']) < 0 else '+'
+        if type(result['modifier_roll']) == list:
+            modifier = sum(result['modifier_roll'])
         
+        else:
+            modifier = result['modifier_roll']
+            
+        mod_sign = '-' if modifier  < 0 else '+'
         message = (
             f'({result["roll"]}) {mod_sign} ({result["modifier_roll"]}): [{result["total"]+result["modifier_total"]}]'
         )
