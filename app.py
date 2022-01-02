@@ -56,7 +56,9 @@ def updates() -> dict:
 
             post = requests.post(SUBMIT_URL, data=payload)
 
-            return post.status_code
+            return {
+                    'status': post.status_code
+                } 
 
 if __name__ == '__main__':
     app.run(debug=False)
