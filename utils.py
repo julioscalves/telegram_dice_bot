@@ -83,7 +83,7 @@ def parse_dice(text: str) -> dict:
             modifier_roll = int(modifiers)
 
         result = {
-            *dices,
+            *dice_roll,
             *modifier_roll
         }
 
@@ -91,7 +91,7 @@ def parse_dice(text: str) -> dict:
 
     else:
         result = {
-            *dices
+            *dice_roll
         }
 
     return result
