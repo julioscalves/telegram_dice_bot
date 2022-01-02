@@ -27,18 +27,13 @@ def updates() -> dict:
         message = ''
 
         if '/start' in text:
-            message = '''Olá\n\nSou um bot programado para rolar dados, o que é muito útil para jogar RPG 😄
-            \n\n
-            Basta usar o comando /roll xdy para rolar os dados. Só substituir o <strong>x</strong> pela quantidade 
-            e o <strong>y</strong> pelo tipo de dado.
-            \n\n
-            Por exemplo: /roll 1d20
-            \n\n
-            Também posso rolar dados para o Sistema Storyteller, usado na série World of Darkness. Pra isso, basta
-            usar o comando /wod numero_de_dados dificuldade
-            \n\n
-            Por exemplo: /wod 6 6 para rolar 6d10 com dificuldade 6!
-            '''
+            message = (
+                'Olá\n\nSou um bot programado para rolar dados, o que é muito útil para jogar RPG 😄\n\n'
+                'Basta usar o comando /roll xdy para rolar os dados. Só substituir o <strong>x</strong> pela quantidade e o <strong>y</strong> pelo tipo de dado.\n\n'
+                'Por exemplo: /roll 1d20\n\n'
+                'Também posso rolar dados para o Sistema Storyteller, usado na série World of Darkness. Pra isso, basta usar o comando /wod numero_de_dados dificuldade\n\n'
+                'Por exemplo: /wod 6 6 para rolar 6d10 com dificuldade 6!'
+            )
         
         elif '/roll' in text or '/wod' in text:
             if '/roll' in text:
@@ -60,3 +55,8 @@ def updates() -> dict:
             }
 
             post = requests.post(SUBMIT_URL, data=payload)
+
+            return post
+
+if __name__ == '__main__':
+    app.run(debug=False)
