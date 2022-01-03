@@ -24,17 +24,23 @@ def assemble_message(result: dict):
 
 
 def parse_wod(text: str) -> dict:
-    command = text.split()
+    try:
+        command = text.split()
 
-    if len(command) == 2:
-        dice_number = int(command[-1])
-        difficulty = 6
+        if len(command) == 2:
+            dice_number = int(command[-1])
+            difficulty = 6
 
-    else:
-        dice_number = int(command[-2])
-        difficulty = int(command[-1])
+        else:
+            dice_number = int(command[-2])
+            difficulty = int(command[-1])
 
-    return wod(dice_number, difficulty)
+        return wod(dice_number, difficulty)
+
+    except:
+        return {
+            'status': 'fail'
+        } 
     
 
 def wod(dice_number: int, difficulty: int) -> dict:
