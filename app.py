@@ -36,7 +36,7 @@ def updates() -> dict:
                 'Por exemplo: /wod 6 6 para rolar 6d10 com dificuldade 6!'
             )
         
-        elif '/roll' in text or '/wod' in text:
+        elif '/roll' in text or '/wod' in text and len(text.split()) > 1 and len(text.split()) < 3:
             if '/roll' in text:
                 result = utils.parse_dice(text)
 
