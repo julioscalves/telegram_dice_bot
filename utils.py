@@ -58,7 +58,11 @@ def wod(dice_number: int, difficulty: int) -> dict:
 
 def handle_modifiers(modifier: int, main_roll: int) -> dict:
     result = roll_dice(modifier[1:])
-    print(result)
+    sign = modifier[0]
+
+    if sign == '-':
+        result['roll'] = result['roll'] * -1
+        result['total'] = result['total'] * -1
 
     return {
         'modifier_roll': result['roll'],
