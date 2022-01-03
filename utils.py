@@ -8,7 +8,7 @@ def assemble_message(result: dict):
             modifier = abs(sum(result['modifier_roll']))
         
         else:
-            modifier = result['modifier_roll']
+            modifier = abs(result['modifier_roll'])
             
         mod_sign = '-' if modifier  < 0 else '+'
         message = (
