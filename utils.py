@@ -67,15 +67,21 @@ def handle_modifiers(modifier: int, main_roll: int) -> dict:
 
 
 def roll_dice(dices: str) -> dict:
-    dice_number, dice_type = dices.split('d')
-    dice_number, dice_type = int(dice_number), int(dice_type)
+    try:
+        dice_number, dice_type = dices.split('d')
+        dice_number, dice_type = int(dice_number), int(dice_type)
 
-    roll = [random.randint(1, dice_type) for _ in range(dice_number)]
+        roll = [random.randint(1, dice_type) for _ in range(dice_number)]
 
-    return {
-        'roll': roll,
-        'total': sum(roll)
-    }
+        return {
+            'roll': roll,
+            'total': sum(roll)
+        }
+    
+    except:
+        return {
+            'status': 'fail'
+        }
 
 def parse_dice(text: str) -> dict:
     result = {}

@@ -63,6 +63,9 @@ def updates() -> dict:
             if result['status'] == 'success':
                 message = utils.assemble_message(result)
 
+            else:
+                message = 'Teve algo de errado nesse comando aí. Se tiver com dúvidas, use o comando /help!'
+
         else:
             message = 'Foi mal, mas não entendi esse comando!'
 
@@ -77,8 +80,8 @@ def updates() -> dict:
             post = requests.post(SUBMIT_URL, data=payload)
 
             return {
-                    'status': post.status_code
-                } 
+                'status': post.status_code
+            } 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
