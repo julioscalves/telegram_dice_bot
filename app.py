@@ -61,10 +61,10 @@ def updates() -> dict:
                 result = utils.parse_wod(text)
 
             if 'status' in result.keys() and result['status'] != 'fail':
-                message = utils.assemble_message(result)
+                message = 'Teve algo de errado nesse comando aí. Se tiver com dúvidas, use o comando /help!'
 
             else:
-                message = 'Teve algo de errado nesse comando aí. Se tiver com dúvidas, use o comando /help!'
+                message = utils.assemble_message(result)
 
         else:
             message = 'Foi mal, mas não entendi esse comando!'
