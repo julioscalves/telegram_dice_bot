@@ -31,9 +31,26 @@ def updates() -> dict:
             message = (
                 'Olá\n\nSou um bot programado para rolar dados, o que é muito útil para jogar RPG 😄\n\n'
                 'Basta usar o comando /roll xdy para rolar os dados. Só substituir o <strong>x</strong> pela quantidade e o <strong>y</strong> pelo tipo de dado.\n\n'
-                'Por exemplo: /roll 1d20\n\n'
+                'Por exemplo: <code>/roll 1d20</code>\n\n'
                 'Também posso rolar dados para o Sistema Storyteller, usado na série World of Darkness. Pra isso, basta usar o comando /wod numero_de_dados dificuldade\n\n'
-                'Por exemplo: /wod 6 6 para rolar 6d10 com dificuldade 6!'
+                'Por exemplo: <code>/wod 6</code> para rolar 6d10 com dificuldade 6!'
+            )
+
+        if '/help' in text:
+            message = (
+                'Os comandos disponíveis são:\n\n'
+                '<strong>/roll</strong>: Faz rolagem de qualquer tipo de dado. É possível adicionar modificadores às rolagens.\n'
+                '<strong>Exemplos de uso:</strong>\n'
+                '<code>/roll 1d20</code>: joga 1d20 normal\n'
+                '<code>/roll 1d12+1d4</code>: joga 1d12 e soma o resultado a 1d4\n'
+                '<code>/roll 1d8-1</code>: joga 1d8 e remove -1 do resultado\n\n'
+                '<strong>/wod</strong>: Faz rolagens para o Sistema Storyteller (d10) e conta os sucessos com base na dificuldade, que, por padrão, é 6.\n'
+                '<strong>Exemplos de uso:</strong>\n'
+                '<code>/wod 6</code>: joga 6d10 e conta os sucessos\n'
+                '<code>/roll 6 8</code>: joga 6d10 com dificuldade 8\n\n'
+                '<strong>IMPORTANTE</strong>\n'
+                'O uso de modificadores é exclusivo do comando /roll. Não é recomendado utilizar modificadores com qualquer outro comando, como /wod.\n\n'
+                'Acertos críticos a todos!'
             )
         
         elif '/roll' in text or '/wod' in text and len(text.split()) > 1 and len(text.split()) < 3:
