@@ -60,7 +60,7 @@ def updates() -> dict:
             elif '/wod' in text:
                 result = utils.parse_wod(text)
 
-            if result['status'] == 'success':
+            if 'status' in result.keys() and result['status'] != 'fail':
                 message = utils.assemble_message(result)
 
             else:
