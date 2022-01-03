@@ -53,7 +53,7 @@ def updates() -> dict:
                 'Acertos críticos a todos!'
             )
         
-        elif '/roll' in text or '/wod' in text and len(text.split()) > 1 and len(text.split()) < 3:
+        elif '/roll' in text or '/wod' in text and len(text.split()) > 1 and len(text.split()) < 4:
             if '/roll' in text:
                 result = utils.parse_dice(text)
 
