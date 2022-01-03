@@ -12,7 +12,7 @@ def assemble_message(result: dict):
             
         mod_sign = '-' if modifier  < 0 else '+'
         message = (
-            f'({result["roll"]}) {mod_sign} ({result["modifier_roll"]}): [{result["total"]+result["modifier_total"]}]'
+            f'({result["roll"]}) {mod_sign} ({abs(result["modifier_roll"])}): [{result["total"]+result["modifier_total"]}]'
         )
 
     else:
