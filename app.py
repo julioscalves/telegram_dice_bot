@@ -60,7 +60,8 @@ def updates() -> dict:
             elif '/wod' in text:
                 result = utils.parse_wod(text)
 
-            message = utils.assemble_message(result)
+            if result['status'] == 'success':
+                message = utils.assemble_message(result)
 
         else:
             message = 'Foi mal, mas não entendi esse comando!'
