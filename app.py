@@ -53,18 +53,21 @@ def updates() -> dict:
                 'Acertos críticos a todos!'
             )
         
-        elif '/roll' in text or '/wod' in text and len(text.split()) > 1 and len(text.split()) < 4:
-            if '/roll' in text:
-                result = utils.parse_dice(text)
+        try:
+            elif '/roll' in text or '/wod' in text and len(text.split()) > 1 and len(text.split()) < 4:
+                if '/roll' in text:
+                     result = utils.parse_dice(text)
 
-            elif '/wod' in text:
-                result = utils.parse_wod(text)
+                elif '/wod' in text:
+                    result = utils.parse_wod(text)
 
-            if 'status' in result.keys() and result['status'] == 'fail':
-                message = 'Teve algo de errado nesse comando aí. Se tiver com dúvidas, use o comando /help!'
+                if 'status' in result.keys() and result['status'] == 'fail':
+                    message = 'Teve algo de errado nesse comando aí. Se tiver com dúvidas, use o comando /help!'
 
-            else:
-                message = utils.assemble_message(result)
+                else:
+                    message = utils.assemble_message(result)
+        except:
+            return { 'status': 'fail' } 
 
         else:
             message = 'Foi mal, mas não entendi esse comando!'
