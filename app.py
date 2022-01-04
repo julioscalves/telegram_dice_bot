@@ -53,10 +53,10 @@ def updates() -> dict:
                 'Acertos críticos a todos!'
             )
         
-        try:
-            elif '/roll' in text or '/wod' in text and len(text.split()) > 1 and len(text.split()) < 4:
+        elif '/roll' in text or '/wod' in text and len(text.split()) > 1 and len(text.split()) < 4:
+            try:           
                 if '/roll' in text:
-                     result = utils.parse_dice(text)
+                    result = utils.parse_dice(text)
 
                 elif '/wod' in text:
                     result = utils.parse_wod(text)
@@ -66,8 +66,9 @@ def updates() -> dict:
 
                 else:
                     message = utils.assemble_message(result)
-        except:
-            return { 'status': 'fail' } 
+            
+            except:
+                return { 'status': 'fail' } 
 
         else:
             message = 'Foi mal, mas não entendi esse comando!'
